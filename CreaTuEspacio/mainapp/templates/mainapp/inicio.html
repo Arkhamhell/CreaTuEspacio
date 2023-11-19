@@ -1,0 +1,74 @@
+{%  extends 'layouts/layoutInterna.html' %}
+{%load static%}
+{%block title%}
+<h1>{{title}}</h1>
+{%endblock%}
+
+{%block content %}
+
+
+<h1>{{title}}</h1>
+<hr>
+{% if messages%}
+     
+    {%for message in messages%}
+      
+        <div class="alert alert-succes"> 
+            {{message}}
+        </div>
+
+    {%endfor%}
+
+{%endif%}
+{% if user.email %}
+<h2> Bienvenido , {{request.user.first_name}} {{user.last_name}} </h2>
+<p>{{user.email}} </p>
+
+{%else%}
+
+<h2>Identificate para ver mas cosas </h2>
+{%endif%}
+<div class="row ">
+<div class="col-md-4"  >  
+<div class="card" style="width: 18rem;">
+    
+    <div class="card-body">
+        <img id="imgusuarios" src="{%static 'images/usuarioslogo.jpg'%}" class="card-img-top" alt="...">
+      <h5 class="card-title">Mantenedor de usuarios</h5>
+      <p class="card-text">En este módulo podrás visualizar y modificar usuarios los cuales ya hayas creado para tu centro.</p>
+      <a href="{% url 'lista_usuarios'  %}" id="btn1" class="btn btn-primary">Ingresar</a>
+    </div>
+</div>
+</div>
+<div class="col-md-4">
+
+<div class="card" style="width: 18rem;">
+    
+    <div class="card-body">
+        <img id="imgusuarios" src="{%static 'images/usuarioslogo.jpg'%}" class="card-img-top" alt="...">
+      <h5 class="card-title">Crear usuarios</h5>
+      <p class="card-text">En este módulo podrás ingresar mediante formulario a nuevos usuarios para tu centro.</p>
+      <a href="{% url 'ingresar_usuarios'  %}" id="btn1" class="btn btn-primary">Ingresar</a>
+    </div>
+</div>
+</div>
+
+<div class="col-md-4">
+
+    <div class="card" style="width: 18rem;">
+        
+        <div class="card-body">
+            <img id="imgusuarios" src="{%static 'images/agendaaaa.jpg'%}" class="card-img-top" alt="...">
+          <h5 class="card-title">Agenda</h5>
+          <p class="card-text">En este módulo podrás verificar las horas pedidas por los usuarios de tu centro.</p>
+          <h6>Proximamente!</h6>
+          
+        </div>
+    </div>
+    </div>
+</div>
+
+
+
+
+{% endblock %}

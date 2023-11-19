@@ -1,0 +1,41 @@
+
+
+
+
+{%block content %}
+
+
+{% for centro in centros %}
+      <article class="article-item">
+        {% if centro.image != 'null' and centro.image.url|length >= 1 %}
+          <div class="image">
+            <img src="{{ centro.image.url }}" />
+          </div>
+        {% endif %}
+        <div class="data">
+           <h2>  <a href="{%url 'centros' centro.id%} "> {{ centro.name }}  </a> </h2>
+          <span class="date"> {{ centro.created_at }}</span>
+          <p>
+            Especialidades:
+            {% for category in centro.categories.all%}
+               <a href="{% url 'category' category.id %}"> {{category}} </a> 
+              
+              {%  if forloop.counter < centro.categories.all|length  %}
+                   {{'-'}}
+              {%endif%}
+
+            {%endfor%}
+             <br>
+              Dirección: {{ centro.address }} 
+              <br>
+              Correo contacto: {{centro.email}}
+              <br>
+              Numero contacto : +569{{centro.number}}
+              
+          </p>
+        </div>
+        <div class="clearfix"> </div>
+      </article>
+    {% endfor %}
+
+{% endblock %}

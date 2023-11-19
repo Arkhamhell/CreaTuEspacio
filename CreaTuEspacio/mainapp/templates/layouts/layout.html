@@ -1,0 +1,74 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {%block tittle %}
+
+        {%endblock%}
+    </title>
+    <link rel="stylesheet" type="text/css" href="{%static 'css/styles.css'%}">
+   
+</head>
+
+<body>
+    <header>
+        <div id="logotipo">
+            <img src="{%static 'images/logo.png'%}"/>
+            <h1>Crea tu espacio</h1>
+        </div>
+        
+    </header>
+    <nav>
+        <ul>
+            <li>
+                <a href="{% url 'index'%}"> Inicio </a>
+            </li>
+            {% if user.email%}
+            
+            {%for page in pages%}
+           <li>
+            <a href="{% url 'page' page.2 %}">{{page.1}} </a>
+            </li>
+            {% endfor  %}
+            <li>
+                <a href="{% url 'logout'%}"> Cerrar sesión </a>
+            </li>
+            {%else%}
+            <li>
+                <a href="{% url 'list'%}"> Centros </a>
+                <ul>
+                    {%for category in categories%}
+                    <li>
+                     <a href="{% url 'category' category.0 %}">{{category.1}} </a>
+                     </li>
+                    {% endfor  %}
+                </ul>
+            </li>
+          
+            <li>
+                <a href="{% url 'login'%}"> Iniciar sesión </a>
+            </li>
+            {%endif%}
+        </ul>
+    </nav>
+    
+    <div id="content">
+        <div class="box">
+            
+            {% block content%}
+              <strong>Contenido del bloque original!!</strong>
+            {%endblock%}
+        </div>
+        
+    </div>
+   
+    <footer>
+        Crea tu espacio &copy;
+    </footer>
+</body>
+
+</html>

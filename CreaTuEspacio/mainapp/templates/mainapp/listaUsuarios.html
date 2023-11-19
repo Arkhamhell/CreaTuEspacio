@@ -1,0 +1,53 @@
+{%  extends 'layouts/layoutInterna.html' %}
+{%block title%}
+<h1>{{title}}</h1>
+{%endblock%}
+
+{%block content %}
+
+
+
+
+<div class="alert alert-info display-1 text-center"> 
+    Mantenedor Usuarios
+
+</div>
+
+{%if usuarios%}
+<table class="table table-striped table-inverse table-responsive">
+     <thead class="thead-inverse"> 
+       <tr>
+          <th>Nombre</th>
+          <th>Usuario</th>
+          <th>Email</th>
+          
+       </tr>
+
+     </thead>   
+     <tbody>
+        {%for usuario in usuarios%}
+         <tr> 
+           <td> {{usuario.nombre}} </td>
+           <td> {{usuario.usuario}} </td>
+           <td> {{usuario.email}} </td>
+           <td><a href="{% url 'actualizar_usuarios' usuario.id %}" class="btn btn-success "><i class="fa-solid fa-pen-to-square"></i></td>
+           <td><a href="{% url 'eliminar_usuarios' usuario.id %}" class="btn btn-danger "><i class="fa-solid fa-trash"></i> </td>
+         </tr>
+         {%endfor%} 
+     </tbody>   
+</table>    
+
+{%else%}
+
+<div class="alert alert-primary" role="alert">
+   <strong> No se encuentran usuarios creados </strong>
+</div>    
+
+
+
+{%endif%}
+
+<a href="{% url 'inicio_usuarios' %}" class="btn btn-danger"> Volver </a>
+<a href="{% url 'ingresar_usuarios' %}" class="btn btn-info float-end"> Agregar usuarios </a>
+
+{% endblock %}

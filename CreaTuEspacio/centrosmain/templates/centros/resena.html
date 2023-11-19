@@ -1,0 +1,24 @@
+{%  extends 'layouts/layout.html' %}
+
+{%block title%}<h1>{{centro.name}}</h1>{%endblock%}
+
+{%block content %}
+
+
+<h1>{{centro.name}} </h1>
+<span>{{centro.created_at}} </span>
+
+
+
+
+ <p>{{centro.description|safe}} </p>
+ <br>
+ 
+ {% if centro.image != 'null' and centro.image.url|length >= 1 %}
+ <div class="image">
+   <img src="{{ centro.image.url }}" />
+ </div>
+{% endif %}
+
+
+{% endblock %}
